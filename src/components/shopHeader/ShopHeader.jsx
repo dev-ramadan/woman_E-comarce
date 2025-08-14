@@ -1,5 +1,5 @@
 import { IoMdOptions } from 'react-icons/io'
-import './ShopHeader.css'
+import './shopHeader.css'
 import { useContext } from 'react'
 import { OureContext } from '../../context/gloableContext'
 const ShopHeader = () => {
