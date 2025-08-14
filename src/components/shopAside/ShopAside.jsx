@@ -1,4 +1,4 @@
-import { useContext} from 'react';
+import { useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './shopAside.css';
 import { OureContext } from '../../context/gloableContext';
@@ -7,10 +7,10 @@ import { useCategoires } from '../../hooks/useCategories';
 const ShopAside = () => {
 
     const { categories, isError, isLoading } = useCategoires()
-    const { openShopAside, setSelectByCategory } = useContext(OureContext);
+    const { openShopAside, setSelectByCategory, setOpenShopAside } = useContext(OureContext);
 
     if (isError) console.log(isError);
-    
+
     return (
         <>
             {
@@ -57,13 +57,21 @@ const ShopAside = () => {
                             >
                                 <h2 className="text-3xl mb-2">Categories</h2>
                                 <div className="shop_categories">
-                                    <li className="categories_link" onClick={() => setSelectByCategory(0)}>All</li>
+                                    <li className="categories_link" onClick={() => {
+                                        setSelectByCategory(0)
+                                        setOpenShopAside(false)
+                                    }}>
+                                        All
+                                    </li>
 
                                     {
                                         categories.map(category => (
                                             <li key={category.id}
                                                 className="categories_link"
-                                                onClick={() => setSelectByCategory(category.id)}
+                                                onClick={() => {
+                                                    setSelectByCategory(category.id)
+                                                    setOpenShopAside(false)
+                                                }}
                                             >
                                                 {category.name}</li>
                                         ))

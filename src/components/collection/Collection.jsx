@@ -4,19 +4,19 @@ import "./Collection.css";
 const Collection = () => {
   const images = [
     {
-      image: "src/assets/images/banner/banner1.webp",
+      image: "images/banner/banner1.webp",
       title: "Summer Collection",
       descripation: "Summer Collection",
       cta: "Discover Now",
     },
     {
-      image: "src/assets/images/banner/banner2.webp",
+      image: "images/banner/banner2.webp",
       title: "What’s New?",
       descripation: "Get the glow",
       cta: "Discover Now",
     },
     {
-      image: "src/assets/images/banner/banner3.webp",
+      image: "images/banner/banner3.webp",
       title: "Buy 1 Get 1",
       descripation: "Starting at $7.99",
       cta: "Shop Now",

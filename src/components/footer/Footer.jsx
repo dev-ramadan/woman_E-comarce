@@ -5,7 +5,7 @@ const Footer = () => {
         {/* Logo + نص */}
         <div className="flex flex-col items-start">
           <img
-            src="src/assets/images/logo.jpg"
+            src="logo.jpg"
             alt="Logo"
             className="w-16 mb-4"
           />
@@ -40,7 +40,7 @@ const Footer = () => {
       {/* حقوق النشر */}
       <div className="text-center mt-10 text-gray-600 text-sm">
         © 2024 All rights reserved. Made with <span className="text-red-500">❤</span> by{" "}
-        <span className="text-teal-500">Amira Alaa</span>
+        <span className="text-teal-500">Dragon Code</span>
       </div>
     </footer>
   );

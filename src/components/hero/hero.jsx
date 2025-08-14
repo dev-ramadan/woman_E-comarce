@@ -46,19 +46,19 @@ const HeroSlider = () => {
 
   const slides = [
     {
-      img: "src/assets/images/hero/hero001.webp",
+      img: "images/hero/hero001.webp",
       title: "Get up to 30%",
       subtitle: "Off New Arrivals",
       button: "Shop Now",
     },
     {
-      img: "src/assets/images/hero/hero002.webp",
+      img: "images/hero/hero002.webp",
       title: "Summer Collection",
       subtitle: "Hot & Trendy",
       button: "Shop Now",
     },
     {
-      img: "src/assets/images/hero/hero003.webp",
+      img: "images/hero/hero003.webp",
       title: "Exclusive Deals",
       subtitle: "Grab Yours Today",
       button: "Shop Now",
