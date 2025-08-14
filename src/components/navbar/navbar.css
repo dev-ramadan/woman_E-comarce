@@ -1,0 +1,37 @@
+/* Header section */
+.header {
+  @apply flex justify-around items-center;
+}
+
+.header-social {
+  @apply flex justify-around items-center w-[25%] md:w-[8%];
+}
+
+.header-logo img {
+  @apply w-[100px];
+}
+
+.header-icons {
+  @apply flex justify-around items-center w-[20%] md:w-[6%];
+}
+
+/* Navbar section */
+.navbar {
+  @apply bg-white shadow-md;
+}
+
+.navbar-container {
+  @apply container mx-auto flex justify-between items-center py-4 px-6;
+}
+
+.navbar-links {
+  @apply flex mx-auto items-center gap-10;
+}
+
+.navbar-link {
+  @apply hover:text-blue-500 font-poppins;
+}
+.active{
+  border-bottom:indigo 2px solid;
+  color: indigo;
+}

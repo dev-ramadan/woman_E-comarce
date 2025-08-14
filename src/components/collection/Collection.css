@@ -1,0 +1,41 @@
+.collection-container {
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-8 container mx-auto px-4 py-10;
+}
+
+.collection-item {
+  @apply relative h-96 overflow-hidden rounded-lg cursor-pointer;
+}
+
+.collection-image {
+  @apply w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105;
+}
+
+/* Shine effect */
+.shine-effect {
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent
+         -translate-x-full -translate-y-full rotate-45
+         transition-transform ease-in-out duration-[1300ms] z-30
+         group-hover:translate-x-full group-hover:translate-y-full;
+}
+
+/* Text styles */
+.collection-text {
+  @apply absolute top-4 left-4 z-10 ;
+}
+
+.collection-text h1 {
+  @apply font-bold text-xl;
+}
+
+.collection-text p {
+  @apply text-sm font-bold mt-4;
+}
+
+/* CTA button */
+.cta {
+  @apply absolute bottom-6 left-4 flex items-center gap-2 cursor-pointer z-10  font-bold text-sm transition-all;
+}
+
+.cta:hover {
+  @apply gap-3;
+}

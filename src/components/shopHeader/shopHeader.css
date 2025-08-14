@@ -1,0 +1,15 @@
+.product-header {
+    @apply  mt-20 bg-[#f2f2f2] p-5 flex justify-between items-center rounded-sm relative
+}
+.menu-icon {
+    @apply md:hidden flex items-center text-2xl cursor-pointer 
+}
+.product-header-right{
+    @apply flex justify-center items-center md:absolute right-2
+}
+.store-by {
+    @apply inline-block text-sm mr-1
+}
+.sort {
+    @apply bg-transparent text-sm
+}

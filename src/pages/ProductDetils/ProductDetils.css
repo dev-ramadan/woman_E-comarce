@@ -1,0 +1,61 @@
+/* productDetails.css */
+.productDetails {
+  @apply grid grid-cols-1 md:grid-cols-2  mt-20 mb-24 items-center justify-center md:justify-around mx-auto gap-16;
+}
+.productDetails .images {
+    @apply flex justify-center items-center mx-4 sm:mx-0
+}
+
+.productDetails .details {
+    @apply mx-4 sm:mx-0
+}
+
+
+.details .category_name {
+  @apply text-sm text-[#868686] mb-[6px];
+}
+
+.details .product_name {
+  @apply text-[26px] font-normal text-black mb-3;
+}
+
+.details .product_price {
+  @apply text-[20px] font-normal text-black mb-5 relative;
+}
+
+.details .product_price::after {
+  content: "";
+  @apply absolute bottom-[-10px] left-0 w-full h-[1px] bg-[#86868694];
+}
+
+.product_des {
+  @apply text-[16px] text-[#868686] my-5;
+}
+
+.buttons {
+  @apply flex justify-start items-center w-full;
+}
+
+.buttons .counts {
+  @apply min-w-[140px] w-[140px] h-[55px] border-2 border-[#86868680] text-center inline-block relative mr-5 touch-manipulation;
+}
+
+.counts_btns {
+  @apply absolute  p-0 top-0 w-[30px] h-[51px] border-0 bg-transparent text-[#86868680] text-[24px] flex items-center cursor-pointer;
+}
+
+#minus {
+  @apply left-0 text-left pl-[15px];
+}
+
+#plus {
+  @apply right-0 text-right pr-[15px];
+}
+
+.product_count {
+  @apply w-[35px] border-0 h-[51px] bg-transparent p-0 font-medium text-[18px] text-black text-center focus:outline-none;
+}
+
+#btn_add {
+  @apply bg-black text-white text-[14px] font-normal min-h-[55px] min-w-[55px] w-[70%] uppercase border-0 py-[5px] px-[25px] cursor-pointer;
+}

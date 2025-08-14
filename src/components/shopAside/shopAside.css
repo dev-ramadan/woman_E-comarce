@@ -1,0 +1,8 @@
+
+.aside {
+    @apply w-60 mt-8 h-fit bg-[#f2f2f2] overflow-x-hidden z-20 hidden md:block
+}
+
+.categories_link {
+    @apply px-2 py-4 text-lg block active:text-[#333333] cursor-pointer
+}
