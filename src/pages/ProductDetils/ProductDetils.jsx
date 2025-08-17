@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useProducts } from "../../hooks/useProducts";
 import "./ProductDetils.css";
+import { useAddToCart } from "../../utils/addTocart";
 
 const ProductDetils = () => {
     const { id } = useParams();
     const { products } = useProducts();
     const singleProduct = products.find((product) => product.id === Number(id));
-
-    const [count, setCount] = useState(1);
     const [mainImage, setMainImage] = useState(null);
+    const handelAdd = useAddToCart()
 
     useEffect(() => {
         if (singleProduct && singleProduct.images.length > 0) {
@@ -17,20 +17,6 @@ const ProductDetils = () => {
         }
     }, [singleProduct]);
 
-    const handleIncrement = () => {
-        setCount((prev) => (prev < 999 ? prev + 1 : prev));
-    };
-
-    const handleDecrement = () => {
-        setCount((prev) => (prev > 1 ? prev - 1 : prev));
-    };
-
-    const handleChange = (e) => {
-        const value = parseInt(e.target.value);
-        if (!isNaN(value) && value >= 1 && value <= 999) {
-            setCount(value);
-        }
-    };
 
     
 
@@ -86,40 +72,13 @@ const ProductDetils = () => {
 
                             {/* الأزرار */}
                             <div className="buttons flex flex-col md:flex-row gap-4 mt-6">
-                                {/* التحكم في الكمية */}
-                                <div className="counts flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                                    <button
-                                        id="minus"
-                                        className="counts_btns px-4 py-2 bg-gray-100 hover:bg-gray-200"
-                                        onClick={handleDecrement}
-                                    >
-                                        -
-                                    </button>
-                                    <input
-                                        type="number"
-                                        inputMode="numeric"
-                                        name="productCount"
-                                        min="1"
-                                        step="1"
-                                        max="999"
-                                        className="product_count w-16 text-center border-x border-gray-300"
-                                        id="productCount"
-                                        value={count}
-                                        onChange={handleChange}
-                                    />
-                                    <button
-                                        id="plus"
-                                        className="counts_btns px-4 py-2 bg-gray-100 hover:bg-gray-200"
-                                        onClick={handleIncrement}
-                                    >
-                                        +
-                                    </button>
-                                </div>
+                        
 
                                 {/* زر الإضافة للسلة */}
                                 <button
                                     id="btn_add"
                                     className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+                                    onClick={()=>handelAdd(singleProduct.id)}
                                 >
                                     Add To Cart
                                 </button>

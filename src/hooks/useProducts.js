@@ -1,6 +1,8 @@
 // hooks/useProducts.js
 
-import { useGetProductsQuery } from "../ReduxTollkit/productsApi";
+import { useGetProductsQuery } from "../api/productsApi";
+
+
 
 export const useProducts = () => {
   const { data: products = [], error, isLoading } = useGetProductsQuery();

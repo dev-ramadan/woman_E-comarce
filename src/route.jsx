@@ -5,16 +5,34 @@ import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
 import Shop from "./pages/shop/Shop";
 import ProductDetils from "./pages/ProductDetils/ProductDetils";
+import Register from "./pages/account/register/Register";
+import Login from "./pages/account/login/login";
+import Cart from "./pages/Cart/Cart";
+import DashboardLayout from "./pages/dashboard/dashbordLayout/DashbordLayout";
+import DashbordProducts from "./pages/dashboard/pages/products";
+import Users from "./pages/dashboard/pages/user";
+import Orders from "./pages/dashboard/pages/order";
+import Categories from "./pages/dashboard/pages/categories";
 
 const route = createBrowserRouter(createRoutesFromElements(
     <>
-    <Route path="/" element={<Layout/>}>
-    <Route index element={<Home/>}/>
-    <Route path="shop" element={<Shop/>}/>
-    <Route path="about" element={<About/>}/>
-    <Route path="contact" element={<Contact/>}/>
-    <Route path="/product/:id" element={<ProductDetils/>}/>
-    </Route>
+        <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="shop" element={<Shop />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="/product/:id" element={<ProductDetils />} />
+        </Route>
+            <Route path="signup" element={<Register />} />
+            <Route path="login" element={<Login />} />
+
+            <Route path="/dashboard" element={<DashboardLayout/>}>
+            <Route index element={<DashbordProducts/>}/>
+            <Route path="users" element={<Users/>}/>
+            <Route path="orders" element={<Orders/>}/>
+            <Route path="categories" element={<Categories/>}/>
+            </Route>
     </>
 ))
 

@@ -4,7 +4,7 @@
 }
 
 .header-social {
-  @apply flex justify-around items-center w-[25%] md:w-[8%];
+  @apply flex justify-between items-center gap-2 w-[25%] md:w-[9%];
 }
 
 .header-logo img {

@@ -7,16 +7,16 @@ import { motion } from "framer-motion";
 const HeroSlider = () => {
   const NextArrow = ({ onClick }) => (
     <div
-      className="absolute right-3 md:right-5 top-1/2 transform -translate-y-1/2 bg-white shadow-md rounded-full p-2 md:p-3 cursor-pointer z-30 hover:bg-gray-200 transition"
+      className="hidden md:block absolute right-3 md:right-5 top-1/2 transform -translate-y-1/2 bg-white shadow-md rounded-full p-2 md:p-3 cursor-pointer z-30 hover:bg-gray-200 transition"
       onClick={onClick}
     >
-      <FaArrowRight className="text-black text-sm md:text-lg" />
+      <FaArrowRight className="text-black text-sm md:text-lg " />
     </div>
   );
 
   const PrevArrow = ({ onClick }) => (
     <div
-      className="absolute left-3 md:left-5 top-1/2 transform -translate-y-1/2 bg-white shadow-md rounded-full p-2 md:p-3 cursor-pointer z-30 hover:bg-gray-200 transition"
+      className="hidden md:block absolute left-3 md:left-5 top-1/2 transform -translate-y-1/2 bg-white shadow-md rounded-full p-2 md:p-3 cursor-pointer z-30 hover:bg-gray-200 transition"
       onClick={onClick}
     >
       <FaArrowLeft className="text-black text-sm md:text-lg" />

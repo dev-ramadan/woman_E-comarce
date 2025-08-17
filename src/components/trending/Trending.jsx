@@ -1,7 +1,7 @@
 import './trending.css'
 import Card from "../../UI/Card";
-import { useGetProductsQuery } from '../../ReduxTollkit/productsApi';
 import { useEffect, useState } from 'react';
+import { useGetProductsQuery } from '../../api/productsApi';
 export default function Trending() {
   const { data: products, error, isLoading } = useGetProductsQuery();
   if (error) console.log(error.message);

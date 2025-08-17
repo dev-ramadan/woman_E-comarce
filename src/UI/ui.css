@@ -1,0 +1,139 @@
+.motion {
+    @apply w-full p-2 md:w-[420px] fixed right-0 top-0 z-50 bg-white h-screen overflow-auto
+}
+.cart_products {
+  @apply flex-grow overflow-x-auto pr-4; 
+  scrollbar-color: #097a6e;
+}
+
+.cart_products.empty {
+  @apply flex justify-center items-center;
+}
+
+.cart_products::-webkit-scrollbar {
+  @apply w-2;
+}
+
+.cart_products::-webkit-scrollbar-track {
+  background: #097a6f15;
+}
+
+.cart_products::-webkit-scrollbar-thumb {
+  @apply rounded;
+  background-color: #097a6f93;
+}
+
+.cart_products::-webkit-scrollbar-thumb:hover {
+  background-color: #097a6e;
+}
+
+.cart_product {
+  @apply flex mb-6 relative; 
+}
+
+.cart_product::after {
+  content: "";
+  @apply absolute left-0 right-0;
+  bottom: -10px;
+  height: 1px;
+  background-color: #868686;
+}
+
+.cart_product_img {
+  @apply w-24 mx-3; 
+}
+
+.cart_product_img img {
+  @apply w-full;
+}
+
+.cart_product_info {
+  @apply w-4/5;
+}
+
+.top_card {
+  @apply flex justify-between items-center mb-7;
+}
+
+.top_card h4 {
+  @apply text-xs font-normal; 
+}
+
+.top_card .product_price {
+  @apply text-[12px] text-black;
+}
+
+.remove_product {
+  @apply w-6 h-6 rounded-full border flex justify-center items-center cursor-pointer;
+  border-color: rgba(134,134,134,.5);
+  padding-left: 1px;
+}
+
+.cart_total {
+  @apply flex justify-between items-center py-4;
+}
+
+.cart_total h3 {
+  @apply text-base font-medium;
+}
+
+#total_price {
+  @apply text-base font-semibold text-red-600;
+}
+
+.buttom_card {
+  @apply flex justify-between items-center mb-5;
+}
+
+.counts {
+  @apply w-24 h-7 border text-center  relative mr-5 flex justify-center items-center top-3 ;
+  
+}
+
+
+
+.minus {
+  @apply left-0  text-left mb-10;
+}
+
+.plus {
+  @apply right-0 -top-3  text-right ;
+}
+
+.product_count {
+  @apply w-9 h-7 bg-transparent text-center text-sm font-normal text-black m-0;
+}
+
+.product_count:focus {
+  @apply outline-none;
+}
+
+.closeCart {
+  @apply bg-gray-300 w-9 h-9 rounded-full flex justify-center items-center cursor-pointer;
+}
+
+.btn_control {
+  @apply flex justify-between items-center mt-1;
+}
+
+.checkout,
+.viewCart {
+  @apply uppercase text-xs font-medium h-12 px-6 min-w-[120px] flex items-center justify-center cursor-pointer transition-all duration-200;
+  width: calc(50% - 5px);
+}
+
+.viewCart {
+  @apply bg-white border border-black;
+}
+
+.checkout {
+  @apply bg-black text-white border-none;
+}
+
+.checkout:hover,
+.viewCart:hover {
+  @apply bg-teal-500 text-white border-white;
+}
+.cart_empty {
+    @apply text-3xl font-bold h-80 flex justify-center items-center
+}
