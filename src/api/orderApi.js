@@ -5,7 +5,7 @@ const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 export const orderApi = createApi({
     reducerPath: 'orderApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: SUPABASE_URL,
+        baseUrl: `${SUPABASE_URL}/rest/v1/`,
         prepareHeaders: async (headers) => {
             const { data: { session } } = await supabase.auth.getSession();
             const token = session?.access_token
