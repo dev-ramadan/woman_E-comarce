@@ -3,6 +3,8 @@ import { useSignUpMutation } from "../../../api/userApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser, loadUserFromStorage } from "../../../Redux/authSlice";
 import { Link, useNavigate } from "react-router";
+import './register.css'
+import toast from "react-hot-toast";
 
 const Login = () => {
     const [displayName, setDisplayName] = useState('');
@@ -35,6 +37,7 @@ const Login = () => {
                 },
                 session: setUserData.session
             }));
+            toast.success('successfuly')
         } catch (error) {
             return
         }
@@ -42,98 +45,39 @@ const Login = () => {
 
     return (
         <>
-            <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 ">
+            <div className="auth-container">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <img
-                        alt="Your Company"
-                        src="logo.jpg"
-                        className="mx-auto h-10 w-auto"
-                    />
-                    <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight ">Create account</h2>
+                    <img alt="Your Company" src="logo.jpg" className="auth-logo" />
+                    <h2 className="auth-title">Create account</h2>
                 </div>
 
-                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-col gap-6">
-                    {isError && (
-                        <p className="text-red-500 text-center mt-4">
-                            {error?.data?.message || error?.error || "Something went wrong"}
-                        </p>)}
+                <div className="auth-box">
+                    {isError && <p className="auth-error">{error?.data?.message || error?.error || "Something went wrong"}</p>}
 
                     <div>
-                        <label htmlFor="name" className="block text-sm/6 font-medium text-gray-500">
-                            Your Name
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                id="name"
-                                name="name"
-                                type="text"
-                                required
-                                autoComplete="name"
-                                value={displayName}
-                                onChange={(e) => setDisplayName(e.target.value)}
-                                className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base  outline outline-1 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                            />
-                        </div>
+                        <label htmlFor="name" className="auth-label">Your Name</label>
+                        <input id="name" type="text" value={displayName} onChange={(e) => setDisplayName(e.target.value)} className="auth-input" />
                     </div>
 
-
                     <div>
-                        <label htmlFor="email" className="block text-sm/6 font-medium text-gray-500">
-                            Email address
-                        </label>
-                        <div className="mt-2">
-                            <input
-                                id="email"
-                                name="email"
-                                type="email"
-                                required
-                                autoComplete="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base  outline outline-1 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                            />
-                        </div>
+                        <label htmlFor="email" className="auth-label">Email address</label>
+                        <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="auth-input" />
                     </div>
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="block text-sm/6 font-medium text-gray-500">
-                                Password
-                            </label>
-                            <div className="text-sm">
-                                <a href="#" className="font-semibold text-indigo-400 hover:text-indigo-300">
-                                    Forgot password?
-                                </a>
-                            </div>
+                            <label htmlFor="password" className="auth-label">Password</label>
+                            <a href="#" className="auth-forgot">Forgot password?</a>
                         </div>
-                        <div className="mt-2">
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                required
-                                autoComplete="current-password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                className="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base  outline outline-1 placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-                            />
-                        </div>
+                        <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="auth-input" />
                     </div>
 
-                    <div>
-                        <button
-                            onClick={handelSignup}
-                            className=" flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                        >
-                            {isLoading ? 'loading' : 'Sign Up'}
-                        </button>
-                    </div>
+                    <button onClick={handelSignup} className="auth-button">
+                        {isLoading ? 'loading' : 'Sign Up'}
+                    </button>
 
-                    <p className="mt-10 text-center text-sm/6 text-gray-400">
-                        Have Account?{' '}
-                        <Link to="/login" className="font-semibold text-indigo-400 hover:text-indigo-300">
-                            Login
-                        </Link>
+                    <p className="auth-footer">
+                        Have Account? <Link to="/login" className="auth-link">Login</Link>
                     </p>
                 </div>
             </div>

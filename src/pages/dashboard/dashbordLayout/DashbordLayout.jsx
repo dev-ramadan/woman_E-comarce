@@ -30,7 +30,7 @@ const DashboardLayout = () => {
     }
 
     return (
-        <div className="flex h-screen">
+        <div className="flex h-screen relative">
             <Sidebar />
             <div className="flex-1 flex flex-col">
                 <DashbordHeader />

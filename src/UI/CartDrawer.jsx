@@ -23,10 +23,10 @@ const CartDrawer = () => {
     }, []);
 
     const { cartItems } = useCart(userID);
-       let totle =  cartItems.reduce((sum, item) => {
-            return sum + item.products.price * item.quantity
+    let totle = cartItems.reduce((sum, item) => {
+        return sum + item.products.price * item.quantity
 
-        }, 0)
+    }, 0)
 
 
     return (
@@ -89,9 +89,11 @@ const CartDrawer = () => {
                         {cartItems.length >= 1 ? (
                             <div className="btn_control">
                                 <Link to={'/cart'}>
-                                <button className="viewCart">View Cart</button>
+                                    <button className="viewCart">View Cart</button>
                                 </Link>
-                                <button className="checkout">Check Out</button>
+                                <Link to={'/checkout'}>
+                                    <button className="checkout">Check Out</button>
+                                </Link>
                             </div>
                         ) : <div className="cart_empty">Cart is Empaty</div>}
                         {/*  */}

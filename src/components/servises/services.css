@@ -1,0 +1,27 @@
+.services-wrapper {
+  @apply overflow-hidden mt-10 border-b-2 border-b-gray-500;
+}
+
+.services-container {
+  @apply flex flex-col md:flex-wrap md:flex-row p-5 justify-around;
+}
+
+.service-card {
+  @apply flex flex-col sm:flex-row items-center sm:items-start p-5 rounded-lg cursor-pointer;
+}
+
+.service-icon {
+  @apply mb-4 sm:mb-0 sm:mr-4 text-center sm:text-left;
+}
+
+.service-text {
+  @apply text-center sm:text-left md:w-48;
+}
+
+.service-title {
+  @apply font-poppins text-sm mb-2;
+}
+
+.service-description {
+  @apply text-gray-600;
+}

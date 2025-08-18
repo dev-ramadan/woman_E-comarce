@@ -4,6 +4,7 @@ import { useCart } from '../../hooks/useCart';
 import { supabase } from '../../supabasae/createclient';
 import { IoMdClose } from 'react-icons/io';
 import { useDeleteItemMutation } from '../../api/cartApi';
+import { Link } from 'react-router';
 const Cart = () => {
     const [userID, setUserID] = useState('')
     const { cartItems } = useCart(userID);
@@ -77,18 +78,16 @@ const Cart = () => {
                                 <div className="summary_price">
                                     <div>
                                         <h4>Subtotal</h4>
-                                        <span id="Subtotal">{totle}</span>
-                                    </div>
-                                    <div className="Delivery">
-                                        <h4>Delivery</h4>
-                                        <span id="Delivery">$70.00</span>
+                                        <span id="Subtotal">${totle}</span>
                                     </div>
                                     <div>
                                         <h4>Total Order</h4>
-                                        <span id="total_order">{totle + 70}</span>
+                                        <span id="total_order">${totle}</span>
                                     </div>
                                 </div>
+                                <Link to={'/checkout'}>
                                 <button className="checkout">Check Out</button>
+                                </Link>
                             </div>
                         </div>
                     </div>

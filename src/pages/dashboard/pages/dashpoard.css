@@ -1,0 +1,222 @@
+/* ============ orders styles ================ */
+
+/* orders.css */
+
+/* الصفحة الأساسية */
+.orders-container {
+  @apply p-4 md:p-6;
+}
+
+.orders-title {
+  @apply text-xl md:text-2xl font-bold mb-4 text-center md:text-left;
+}
+
+/* ✅ عرض الجدول في الديسكتوب فقط */
+.orders-table-wrapper {
+  @apply hidden md:block overflow-x-auto;
+}
+
+.orders-table {
+  @apply min-w-full bg-white shadow-md rounded-lg overflow-hidden text-sm md:text-base;
+}
+
+.orders-thead {
+  @apply bg-gray-100 text-left;
+}
+
+.orders-th {
+  @apply py-3 px-4;
+}
+
+.orders-tr {
+  @apply border-b hover:bg-gray-50;
+}
+
+.orders-td {
+  @apply py-3 px-4;
+}
+
+.product-images {
+  @apply flex gap-2 flex-wrap;
+}
+
+.product-img {
+  @apply w-10 h-10 md:w-12 md:h-12 object-cover rounded;
+}
+
+.qty-wrapper {
+  @apply flex flex-col gap-1 md:gap-2;
+}
+
+.status-wrapper {
+  @apply flex flex-col gap-2;
+}
+
+.status-badge {
+  @apply px-3 py-1 rounded-full text-sm font-semibold text-white text-center;
+}
+
+.status-pending {
+  @apply bg-yellow-500;
+}
+
+.status-shipped {
+  @apply bg-blue-500;
+}
+
+.status-delivered {
+  @apply bg-green-600;
+}
+
+.status-canceled {
+  @apply bg-red-600;
+}
+
+.status-select {
+  @apply border rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.price {
+  @apply font-bold text-green-600;
+}
+
+.loading-text {
+  @apply text-center py-10;
+}
+
+.error-text {
+  @apply text-center py-10 text-red-500;
+}
+
+/* ✅ بطاقات الطلبات في الموبايل */
+.orders-mobile {
+  @apply grid grid-cols-1 gap-4 md:hidden;
+}
+
+.order-card {
+  @apply bg-white rounded-lg shadow-md p-4 space-y-3;
+}
+
+.order-header {
+  @apply flex justify-between items-center;
+}
+
+.order-id {
+  @apply font-bold text-gray-800;
+}
+
+.order-price {
+  @apply text-green-600 font-semibold;
+}
+
+.order-info {
+  @apply text-sm text-gray-600;
+}
+
+.order-products {
+  @apply flex gap-2 flex-wrap;
+}
+
+.order-actions {
+  @apply flex flex-col gap-2 mt-3;
+}
+
+  /* ================= end ==================== */
+
+
+  /* =============== SideBare ================= */
+
+  .sidebar-container {
+  @apply fixed top-0 left-0 h-full w-64 bg-gray-800 text-white p-5 transform transition-transform duration-300 ease-in-out z-50;
+}
+
+.sidebar-open {
+  @apply translate-x-0;
+}
+
+.sidebar-closed {
+  @apply -translate-x-full;
+}
+
+.sidebar-header {
+  @apply flex justify-between items-center mb-6;
+}
+
+.sidebar-title {
+  @apply text-xl font-bold;
+}
+
+.sidebar-close-btn {
+  @apply text-white;
+}
+
+.sidebar-links {
+  @apply flex flex-col gap-4;
+}
+
+.sidebar-link {
+  @apply flex items-center gap-3 p-2 rounded hover:bg-gray-700;
+}
+
+.sidebar-link-active {
+  @apply bg-gray-700 text-yellow-400;
+}
+
+.toggle-btn {
+  @apply fixed top-56 sm:top-40 left-5 z-50 bg-gray-800 text-white p-3 rounded-md;
+}
+
+.overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden;
+}
+
+/* =========== END =================== */
+
+/* ========== Dashbord Products ============== */
+
+
+.dashboard-container {
+  @apply relative;
+}
+
+.dashboard-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.dashboard-card {
+  @apply border p-4 rounded shadow bg-white flex flex-col;
+}
+
+.dashboard-img {
+  @apply w-full h-80 object-cover mb-2 rounded;
+}
+
+.dashboard-title {
+  @apply font-bold text-lg mb-1;
+}
+
+.dashboard-price {
+  @apply text-gray-700 mb-3;
+}
+
+.dashboard-actions {
+  @apply flex justify-between items-center mt-auto;
+}
+
+.dashboard-btn {
+  @apply p-3 bg-black text-white rounded hover:bg-gray-900 transition;
+}
+
+.dashboard-overlay {
+  @apply fixed inset-0 bg-gray-700 bg-opacity-90 z-40 flex justify-center items-center;
+}
+
+.btn-add-product {
+  @apply flex justify-end mb-5;
+}
+
+.icon-action {
+  @apply cursor-pointer hover:text-red-500 transition;
+}
+
+/* ============ END ================= */

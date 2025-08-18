@@ -9,7 +9,8 @@ export const OurePtovider = ({ children }) => {
     const [openCartDrawer, setOpenCartDrawer] = useState(false);
     const [addProductForm, setAddProductForm] = useState(false);
     const [deleteDialog, setDeleteDialog] = useState({ open: false, id: null });
-    const [openFormUpdate ,setOpenFormUpdate] = useState(false)
+    const [openFormUpdate ,setOpenFormUpdate] = useState(false);
+    const [asideAdmin ,setAsideAdmin] = useState(false)
     const [currentProduct, setCurrentProduct] = useState(null);
 
 
@@ -31,7 +32,9 @@ export const OurePtovider = ({ children }) => {
             openFormUpdate,
             setOpenFormUpdate,
             currentProduct,
-            setCurrentProduct
+            setCurrentProduct,
+            asideAdmin,
+            setAsideAdmin
         }}>
             {children}
         </OureContext.Provider>

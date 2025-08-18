@@ -1,0 +1,27 @@
+.subscribe-section {
+  @apply py-12 bg-gray-100;
+}
+
+.subscribe-container {
+  @apply container mx-auto text-center;
+}
+
+.subscribe-title {
+  @apply text-2xl font-bold mb-4;
+}
+
+.subscribe-text {
+  @apply mb-6;
+}
+
+.subscribe-form {
+  @apply flex justify-center;
+}
+
+.subscribe-input {
+  @apply px-4 py-2 rounded-l border border-gray-300 focus:outline-none w-64;
+}
+
+.subscribe-button {
+  @apply bg-blue-500 text-white px-6 py-2 rounded-r hover:bg-blue-600 transition duration-300;
+}

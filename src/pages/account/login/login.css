@@ -1,0 +1,55 @@
+.login-wrapper {
+  @apply flex min-h-full flex-col justify-center px-6 py-12 lg:px-8;
+}
+
+.login-header {
+  @apply sm:mx-auto sm:w-full sm:max-w-sm text-center;
+}
+
+.login-logo {
+  @apply mx-auto h-10 w-auto;
+}
+
+.login-title {
+  @apply mt-10 text-center text-2xl font-bold tracking-tight;
+}
+
+.login-form {
+  @apply mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-col gap-6;
+}
+
+.login-error {
+  @apply text-red-500 text-center mt-4 bg-red-300 p-3 rounded-lg;
+}
+
+.login-label {
+  @apply block text-sm font-medium text-gray-500;
+}
+
+.login-input {
+  @apply block w-full rounded-md bg-white/5 px-3 py-1.5 text-base outline outline-1 
+         placeholder:text-gray-500 focus:outline focus:outline-2 focus:-outline-offset-2 
+         focus:outline-indigo-500 sm:text-sm;
+}
+
+.login-password-header {
+  @apply flex items-center justify-between;
+}
+
+.login-forgot-link {
+  @apply font-semibold text-indigo-400 hover:text-indigo-300;
+}
+
+.login-button {
+  @apply flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold 
+         text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 
+         focus-visible:outline-offset-2 focus-visible:outline-indigo-500 transition;
+}
+
+.login-footer {
+  @apply mt-10 text-center text-sm text-gray-400;
+}
+
+.login-link {
+  @apply font-semibold text-indigo-400 hover:text-indigo-300;
+}

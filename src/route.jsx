@@ -13,6 +13,7 @@ import DashbordProducts from "./pages/dashboard/pages/products";
 import Users from "./pages/dashboard/pages/user";
 import Orders from "./pages/dashboard/pages/order";
 import Categories from "./pages/dashboard/pages/categories";
+import CheckOut from "./pages/chackOut/CheckOut";
 
 const route = createBrowserRouter(createRoutesFromElements(
     <>
@@ -22,6 +23,7 @@ const route = createBrowserRouter(createRoutesFromElements(
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<CheckOut />} />
             <Route path="/product/:id" element={<ProductDetils />} />
         </Route>
             <Route path="signup" element={<Register />} />

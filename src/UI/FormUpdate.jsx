@@ -4,6 +4,8 @@ import { uploadImage } from "../utils/uploadeImage";
 import { FiLoader } from "react-icons/fi";
 import { CgClose } from "react-icons/cg";
 import { OureContext } from "../context/gloableContext";
+import toast from "react-hot-toast";
+import "./ui.css"; // استدعاء ملف CSS
 
 const FormUpdate = ({ product }) => {
     const [file, setFile] = useState(product.images[0]);
@@ -14,7 +16,7 @@ const FormUpdate = ({ product }) => {
     const [loading, setLoading] = useState(false);
 
     const [updateProduct, { isLoading }] = useUpdateProductMutation();
-    const { openFormUpdate, setOpenFormUpdate  } = useContext(OureContext);
+    const { openFormUpdate, setOpenFormUpdate } = useContext(OureContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,7 +25,6 @@ const FormUpdate = ({ product }) => {
 
             let imageUrl = file;
             if (file && typeof file !== "string") {
-                // إذا اخترنا ملف جديد
                 imageUrl = await uploadImage(file);
             }
 
@@ -36,49 +37,52 @@ const FormUpdate = ({ product }) => {
                 images: [imageUrl],
             }).unwrap();
 
-            alert("Product updated successfully!");
-            
+            toast.success('Product updated successfully!');
         } catch (err) {
             console.error("Error updating product:", err);
-            alert("Failed to update product");
+            toast.error("Failed to update product");
         } finally {
             setLoading(false);
-            setOpenFormUpdate(false)
+            setOpenFormUpdate(false);
         }
     };
 
     return (
         <>
-            {
-                openFormUpdate ? (
-                    <div className="max-w-lg mx-auto bg-white p-6 rounded shadow relative">
-                        <CgClose
-                            onClick={() => setOpenFormUpdate(!openFormUpdate)}
-                            className="cursor-pointer absolute top-2 right-2 text-gray-500 hover:text-gray-800"
-                            size={20}
-                        />
-                        <h2 className="text-2xl font-bold mb-4">Update Product</h2>
+            {openFormUpdate && (
+                <div className="form-overlay">
+                    <div className="form-container">
+                        <button
+                            onClick={() => setOpenFormUpdate(false)}
+                            className="close-btn"
+                        >
+                            <CgClose size={24} />
+                        </button>
+
+                        <h2 className="form-title">Update Product</h2>
+                        <hr className="form-divider" />
+
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <input
                                 type="text"
                                 placeholder="Title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="w-full border p-2 rounded"
+                                className="form-input"
                                 required
                             />
                             <textarea
                                 placeholder="Description"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                className="w-full border p-2 rounded"
+                                className="form-input"
                             />
                             <input
                                 type="number"
                                 placeholder="Price"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
-                                className="w-full border p-2 rounded"
+                                className="form-input"
                                 required
                             />
                             <input
@@ -86,30 +90,28 @@ const FormUpdate = ({ product }) => {
                                 placeholder="Slug"
                                 value={slug_name}
                                 onChange={(e) => setSlug(e.target.value)}
-                                className="w-full border p-2 rounded"
+                                className="form-input"
                                 required
                             />
                             <input
                                 type="file"
                                 onChange={(e) => setFile(e.target.files[0])}
-                                className="w-full"
+                                className="file-input"
                             />
                             {file && typeof file === "string" && (
-                                <img src={file} alt="Preview" className="w-32 h-32 object-cover mt-2 rounded" />
+                                <img src={file} alt="Preview" className="preview-img" />
                             )}
                             <button
                                 type="submit"
                                 disabled={isLoading || loading}
-                                className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 flex justify-center items-center"
+                                className={`submit-btn ${loading ? "submit-btn-disabled" : ""}`}
                             >
                                 {loading ? <FiLoader className="animate-spin" size={20} /> : "Update Product"}
                             </button>
                         </form>
                     </div>
-                ) : (
-                    ''
-                )
-            }
+                </div>
+            )}
         </>
     );
 };

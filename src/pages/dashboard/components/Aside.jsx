@@ -1,35 +1,77 @@
+import { useContext } from "react";
 import { NavLink } from "react-router";
+import { OureContext } from "../../../context/gloableContext";
+import { FaBox, FaTags, FaShoppingCart, FaUsers, FaBars, FaTimes } from "react-icons/fa";
+import '../pages/dashpoard.css';
 
-const Sidebar = () => (
-  <div className="w-64 h-screen bg-gray-800 text-white p-5">
-    <h1 className="text-xl font-bold mb-6">Dashboard</h1>
-    <nav className="flex flex-col gap-4">
-      <NavLink 
-        to="/dashboard" 
-        className={({ isActive }) => isActive ? "text-yellow-400" : "hover:text-gray-300"}
+const Sidebar = () => {
+  const { asideAdmin, setAsideAdmin } = useContext(OureContext);
+
+  return (
+    <>
+      {!asideAdmin && (
+        <button
+          onClick={() => setAsideAdmin(true)}
+          className="toggle-btn"
+        >
+          <FaBars size={20} />
+        </button>
+      )}
+
+      <div
+        className={`sidebar-container ${asideAdmin ? "sidebar-open" : "sidebar-closed"}`}
       >
-        Products
-      </NavLink>
-      <NavLink
-        to="/dashboard/categories" 
-        className={({ isActive }) => isActive ? "text-yellow-400" : "hover:text-gray-300"}
-      >
-        Categories
-      </NavLink>
-      <NavLink 
-        to="/dashboard/orders" 
-        className={({ isActive }) => isActive ? "text-yellow-400" : "hover:text-gray-300"}
-      >
-        Orders
-      </NavLink>
-      <NavLink 
-        to="/dashboard/users" 
-        className={({ isActive }) => isActive ? "text-yellow-400" : "hover:text-gray-300"}
-      >
-        Users
-      </NavLink>
-    </nav>
-  </div>
-);
+        <div className="sidebar-header">
+          <h1 className="sidebar-title">Dashboard</h1>
+          <button onClick={() => setAsideAdmin(false)} className="sidebar-close-btn">
+            <FaTimes size={20} />
+          </button>
+        </div>
+
+        <nav className="sidebar-links">
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
+            }
+          >
+            <FaBox /> Products
+          </NavLink>
+          <NavLink
+            to="/dashboard/categories"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
+            }
+          >
+            <FaTags /> Categories
+          </NavLink>
+          <NavLink
+            to="/dashboard/orders"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
+            }
+          >
+            <FaShoppingCart /> Orders
+          </NavLink>
+          <NavLink
+            to="/dashboard/users"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
+            }
+          >
+            <FaUsers /> Users
+          </NavLink>
+        </nav>
+      </div>
+
+      {asideAdmin && (
+        <div
+          className="overlay"
+          onClick={() => setAsideAdmin(false)}
+        ></div>
+      )}
+    </>
+  );
+};
 
 export default Sidebar;

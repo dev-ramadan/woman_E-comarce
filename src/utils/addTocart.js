@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useAddToCartMutation, useUpdateCartMutation } from "../api/cartApi";
 import { useCart } from "../hooks/useCart";
 import { supabase } from "../supabasae/createclient";
+import toast from "react-hot-toast";
 
 export const useAddToCart = () => {
   const [addToCart] = useAddToCartMutation();
@@ -20,7 +21,7 @@ export const useAddToCart = () => {
   const handelAdd = useCallback(
     async (productId) => {
       if (!userID) {
-        console.log('Please log in first');
+        toast.error('Please log in first');
         return;
       }
 
@@ -39,7 +40,7 @@ export const useAddToCart = () => {
             user_id: userID,
             quantity: 1
           }).unwrap();
-          alert('تمت الإضافة بنجاح!');
+          toast.success('Product Add Successfuly!');
         }
       } catch (error) {
         console.log(error);

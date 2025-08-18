@@ -1,0 +1,49 @@
+.about_page {
+  @apply font-sans;
+}
+
+/* Features Grid */
+.features_grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center;
+}
+
+.feature_card {
+  @apply bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105;
+}
+
+.feature_icon {
+  @apply text-5xl;
+}
+
+/* Testimonials Grid */
+.testimonials_grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8 text-center;
+}
+
+.testimonial_card {
+  @apply bg-white p-6 rounded-lg shadow-md;
+}
+
+/* Hero Section */
+.hero h1 {
+  @apply text-gray-800;
+}
+
+.hero p {
+  @apply text-gray-600;
+}
+
+/* Contact CTA */
+.contact_cta button {
+  @apply flex items-center justify-center gap-2;
+}
+
+/* Responsive Padding */
+@media (max-width: 768px) {
+  .hero {
+    @apply py-16 px-4;
+  }
+  .features, .testimonials, .contact_cta {
+    @apply px-4;
+  }
+}

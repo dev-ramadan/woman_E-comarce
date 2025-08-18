@@ -25,7 +25,7 @@
 }
 
 .navbar-links {
-  @apply flex mx-auto items-center gap-10;
+  @apply flex mx-auto items-center gap-10 flex-wrap justify-center;
 }
 
 .navbar-link {
