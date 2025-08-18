@@ -3,9 +3,6 @@ import { supabase } from "../supabasae/createclient";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-console.log(`${SUPABASE_URL}/rest/v1/`);
-
 export const cartApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: `${SUPABASE_URL}/rest/v1/`,
