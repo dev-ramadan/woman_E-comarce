@@ -11,7 +11,6 @@ const Card = ({ title, price, image, id }) => {
 
   const isLoginIn = ( id) => {
     checkUser()
-    setQuantityDialog(true)
     setCurrentProductId(id)
   }
 

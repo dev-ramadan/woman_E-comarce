@@ -10,7 +10,7 @@ export const useAddToCart = () => {
   const [updateCart] = useUpdateCartMutation();
   const [userID, setUserID] = useState(null);
   const { cartItems } = useCart(userID);
-  const { setQuantityDialog, selectQuantity, setSelectQuantity, setCurrentProductId } = useContext(OureContext)
+  const { setQuantityDialog, selectQuantity, setSelectQuantity  ,setCurrentProductId } = useContext(OureContext)
   const { user } = useSelector(state => state.auth)
   useEffect(() => {
 
@@ -26,9 +26,8 @@ export const useAddToCart = () => {
     if (!userID) {
       toast.error('Please log in first');
       return;
-    } else {
-      setQuantityDialog(true)
     }
+    setQuantityDialog(true)
   }
 
   const handelAdd = useCallback(
@@ -52,13 +51,13 @@ export const useAddToCart = () => {
           setQuantityDialog(false);
           setSelectQuantity(1)
           setCurrentProductId(null)
-
+        
         }
       } catch (error) {
         console.log(error);
       }
     },
-    [userID, cartItems, addToCart, updateCart, selectQuantity]
+    [userID, cartItems, addToCart, updateCart , selectQuantity]
   );
 
   return { handelAdd, checkUser };
