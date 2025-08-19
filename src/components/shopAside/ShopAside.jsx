@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './shopAside.css';
 import { OureContext } from '../../context/gloableContext';
 import { useCategoires } from '../../hooks/useCategories';
+import { NavLink } from 'react-router';
 
 const ShopAside = () => {
 
@@ -35,15 +36,15 @@ const ShopAside = () => {
                             >
                                 <h2 className="text-3xl mb-2">Categories</h2>
                                 <div className="shop_categories">
-                                    <li className="categories_link" onClick={() => setSelectByCategory(0)}>All</li>
+                                    <NavLink className="categories_link" onClick={() => setSelectByCategory(0)}>All</NavLink>
                                     {
                                         categories.map(category => (
-                                            <li key={category.id}
+                                            <NavLink key={category.id}
                                                 className="categories_link"
                                                 onClick={() => setSelectByCategory(category.id)}
                                             >
                                                 {category.name}
-                                            </li>
+                                            </NavLink>
                                         ))
                                     }
 
@@ -61,12 +62,12 @@ const ShopAside = () => {
                             >
                                 <h2 className="text-3xl mb-2">Categories</h2>
                                 <div className="shop_categories">
-                                    <li className="categories_link" onClick={() => {
+                                    <NavLink className="categories_link" onClick={() => {
                                         setSelectByCategory(0)
                                         setOpenShopAside(false)
                                     }}>
                                         All
-                                    </li>
+                                    </NavLink>
 
                                     {
                                         categories.map(category => (
