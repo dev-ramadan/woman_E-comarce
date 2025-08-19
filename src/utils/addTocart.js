@@ -1,30 +1,37 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useContext } from "react";
 import { useAddToCartMutation, useUpdateCartMutation } from "../api/cartApi";
 import { useCart } from "../hooks/useCart";
-import { supabase } from "../supabasae/createclient";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { OureContext } from "../context/gloableContext";
 
 export const useAddToCart = () => {
   const [addToCart] = useAddToCartMutation();
   const [updateCart] = useUpdateCartMutation();
-  const [userID, setUserID] = useState('');
+  const [userID, setUserID] = useState(null);
   const { cartItems } = useCart(userID);
+  const { setQuantityDialog, selectQuantity, setSelectQuantity  ,setCurrentProductId } = useContext(OureContext)
+  const { user } = useSelector(state => state.auth)
   useEffect(() => {
-    const fetchUser = async () => {
-      const { data } = await supabase.auth.getUser();
-      const user = data?.user;
-      if (user) setUserID(user.id);
-    };
-    fetchUser();
-  }, []);
+
+    if (user) {
+      setUserID(user.id)
+    } else {
+      setUserID(null)
+    }
+
+  }, [user]);
+
+  const checkUser = () => {
+    if (!userID) {
+      toast.error('Please log in first');
+      return;
+    }
+    setQuantityDialog(true)
+  }
 
   const handelAdd = useCallback(
     async (productId) => {
-      if (!userID) {
-        toast.error('Please log in first');
-        return;
-      }
-
       try {
         const existingItem = cartItems.find(item => item.product_id === productId);
 
@@ -32,22 +39,26 @@ export const useAddToCart = () => {
           const { id, quantity } = existingItem;
           await updateCart({
             id,
-            quantity: quantity + 1
+            quantity: quantity + selectQuantity
           }).unwrap();
         } else {
           await addToCart({
             product_id: productId,
             user_id: userID,
-            quantity: 1
+            quantity: selectQuantity
           }).unwrap();
           toast.success('Product Add Successfuly!');
+          setQuantityDialog(false);
+          setSelectQuantity(1)
+          setCurrentProductId(null)
+        
         }
       } catch (error) {
         console.log(error);
       }
     },
-    [userID, cartItems, addToCart, updateCart]
+    [userID, cartItems, addToCart, updateCart , selectQuantity]
   );
 
-  return handelAdd;
+  return { handelAdd, checkUser };
 };

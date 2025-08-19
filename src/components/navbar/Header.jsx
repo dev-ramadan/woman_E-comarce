@@ -8,16 +8,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { LiaSignOutAltSolid } from "react-icons/lia";
 import { supabase } from "../../supabasae/createclient";
 import { logout } from "../../Redux/authSlice";
+import { useCart } from "../../hooks/useCart";
 
 const Header = () => {
     const { openCartDrawer, setOpenCartDrawer } = useContext(OureContext);
     const { isLogin } = useSelector(state => state.auth);
     const [login, setLogin] = useState(false);
+    const [userID, setUserID] = useState(null)
+    const { cartItems } = useCart(userID)
     const dispatch = useDispatch();
-    const handelLogout = async() => {
-       await supabase.auth.signOut();
-       dispatch(logout())
+    const handelLogout = async () => {
+        await supabase.auth.signOut();
+        dispatch(logout())
     }
+    useEffect(() => {
+        const setIdUser = async () => {
+            const { data: { session } = {} } = await supabase.auth.getSession();
+            if (session?.user?.id) setUserID(session.user.id);
+        }
+        setIdUser();
+    }, []);
     useEffect(() => {
         setLogin(isLogin)
     }, [isLogin])
@@ -46,8 +56,13 @@ const Header = () => {
                     </div>
                 ) : (
                     <div className="header-icons">
-                        <MdOutlineShoppingCart className="cursor-pointer" size={20} onClick={() => setOpenCartDrawer(!openCartDrawer)} />
-                        <LiaSignOutAltSolid size={23} onClick={handelLogout}/>
+                        <div className="relative" onClick={() => setOpenCartDrawer(!openCartDrawer)}>
+                            <h2 className="w-6 h-6 cursor-pointer text-white flex justify-center items-center absolute -top-5 -right-2 bg-blue-400 p-2 rounded-full">{cartItems.length || 0}</h2>
+                            <MdOutlineShoppingCart className="cursor-pointer mr-2" size={25} />
+                        </div>
+                        <div>
+                            <LiaSignOutAltSolid className="ml-2" size={25} onClick={handelLogout} />
+                        </div>
                     </div>
                 )
             }

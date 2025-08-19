@@ -1,28 +1,21 @@
 import { Outlet, useNavigate } from "react-router";
 import Sidebar from "../components/Aside";
 import DashbordHeader from "../components/DashbotdHeader";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { supabase } from "../../../supabasae/createclient";
+import { useSelector } from "react-redux";
 
 const DashboardLayout = () => {
     const navigate = useNavigate();
     const [isChecking, setIsChecking] = useState(true);
-
+    const {  profile } = useSelector(state => state.auth)
     useEffect(() => {
-        const getProfile = async () => {
-            const {data : {user}} = await supabase.auth.getUser();
-            const {data : role} = await supabase.from('profiles')
-            .select('role')
-            .eq('id' , user.id)
-            .single();
-
-            if(role.role !== 'admin' || role === null){
+            if (profile !== null  &&  profile.role !== 'admin') {
                 navigate('/')
+            }else if (profile === null) {
+                navigate('/login')
             }
             setIsChecking(false)
-        }
-        getProfile()
     }, []);
 
     if (isChecking) {

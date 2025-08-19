@@ -1,16 +1,26 @@
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router";
-import { useAddToCart } from "../utils/addTocart";
 import "./ui.css";
+import { useContext } from "react";
+import { OureContext } from "../context/gloableContext";
+import { useAddToCart } from "../utils/addTocart";
 
 const Card = ({ title, price, image, id }) => {
-  const handelAdd = useAddToCart();
+  const {setQuantityDialog,setCurrentProductId} = useContext(OureContext);
+  const {checkUser} = useAddToCart() ;
+
+  const isLoginIn = ( id) => {
+    checkUser()
+    setQuantityDialog(true)
+    setCurrentProductId(id)
+  }
 
   return (
     <div className="card">
+      
       <div
         className="card-cart-icon"
-        onClick={() => handelAdd(id)}
+        onClick={()=>isLoginIn(id)}
       >
         <MdOutlineShoppingCart size={20} />
       </div>

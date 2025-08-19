@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router";
 import { useProducts } from "../../hooks/useProducts";
 import "./ProductDetils.css";
 import { useAddToCart } from "../../utils/addTocart";
+import { OureContext } from "../../context/gloableContext";
 
 const ProductDetils = () => {
     const { id } = useParams();
     const { products } = useProducts();
     const singleProduct = products.find((product) => product.id === Number(id));
     const [mainImage, setMainImage] = useState(null);
-    const handelAdd = useAddToCart()
+    const {checkUser} = useAddToCart();
+    const {setQuantityDialog , setCurrentProductId} = useContext (OureContext)
 
     useEffect(() => {
         if (singleProduct && singleProduct.images.length > 0) {
@@ -17,8 +19,11 @@ const ProductDetils = () => {
         }
     }, [singleProduct]);
 
-
-    
+      const isLoginIn = ( id) => {
+    checkUser()
+    setQuantityDialog(true)
+    setCurrentProductId(id)
+  }
 
     return (
         <main>
@@ -78,7 +83,7 @@ const ProductDetils = () => {
                                 <button
                                     id="btn_add"
                                     className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-                                    onClick={()=>handelAdd(singleProduct.id)}
+                                    onClick={()=>isLoginIn(singleProduct.id)}
                                 >
                                     Add To Cart
                                 </button>

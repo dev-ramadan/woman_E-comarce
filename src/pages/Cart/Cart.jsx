@@ -3,15 +3,19 @@ import './cart.css'
 import { useCart } from '../../hooks/useCart';
 import { supabase } from '../../supabasae/createclient';
 import { IoMdClose } from 'react-icons/io';
-import { useDeleteItemMutation } from '../../api/cartApi';
+import { useDeleteItemMutation, useUpdateCartMutation } from '../../api/cartApi';
 import { Link } from 'react-router';
+import toast from 'react-hot-toast';
 const Cart = () => {
-    const [userID, setUserID] = useState('')
+    const [userID, setUserID] = useState('');
+    const [promoCode, setPromoCode] = useState(null);
+    const [totaleAfterPromo, setTotaleAfterPromo] = useState(null)
     const { cartItems } = useCart(userID);
-    const [deleteItem] = useDeleteItemMutation()
+    const [deleteItem] = useDeleteItemMutation();
+    const [updateCart] = useUpdateCartMutation()
     useEffect(() => {
         const fetchUser = async () => {
-            const { data, error } = await supabase.auth.getUser();
+            const { data } = await supabase.auth.getUser();
             const user = data.user;
             setUserID(user.id)
         }
@@ -21,6 +25,14 @@ const Cart = () => {
         return sum + item.products.price * item.quantity
 
     }, 0)
+
+    const chackPromoCode = () => {
+        if (promoCode === 'dragon') {
+            setTotaleAfterPromo(totle > 50 ? totle - 15 : totle - 5);
+            toast.success('Discound Success')
+        }
+        return
+    }
     return (
         <>
             <main className="cart_page">
@@ -50,7 +62,7 @@ const Cart = () => {
                                                 </div>
                                                 <div className="buttom_card">
                                                     <div className="counts">
-                                                        <button className="mr-2" onClick={() => updateCart({ id: item.id, quantity: item.quantity <= 1 ? '' : item.quantity - 1 })}>-</button>
+                                                        <button className="mr-2" onClick={() => updateCart({ id: item.id, quantity: item.quantity <= 1 ? 1 : item.quantity - 1 })}>-</button>
                                                         <input type="number" readOnly min="1" step="1" max="999"
                                                             value={item.quantity} className="product_count" />
                                                         <button onClick={() => updateCart({ id: item.id, quantity: item.quantity + 1 })}>+</button>
@@ -69,8 +81,8 @@ const Cart = () => {
                                     Do you have a Promotional Code?
                                 </h2>
                                 <div className="apply_code">
-                                    <input type="text" id="code" placeholder="Promo code" />
-                                    <button >Done</button>
+                                    <input type="text" id="code" placeholder="Promo code" value={promoCode || ''} onChange={(e) => setPromoCode(e.target.value)} />
+                                    <button onClick={chackPromoCode}>Done</button>
                                 </div>
                             </div>
                             <div className="summary">
@@ -82,11 +94,12 @@ const Cart = () => {
                                     </div>
                                     <div>
                                         <h4>Total Order</h4>
-                                        <span id="total_order">${totle}</span>
+                                        <span id="total_order " className={`${promoCode ? 'line-through' : ''}`}>${totle}</span>
+                                        {promoCode ? <span id="total_order ">${totaleAfterPromo}</span> : ''}
                                     </div>
                                 </div>
-                                <Link to={'/checkout'}>
-                                <button className="checkout">Check Out</button>
+                                <Link to={`/checkout?total=${totaleAfterPromo}`} >
+                                    <button className="checkout">Check Out</button>
                                 </Link>
                             </div>
                         </div>

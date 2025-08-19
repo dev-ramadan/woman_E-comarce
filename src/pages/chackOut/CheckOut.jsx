@@ -5,7 +5,7 @@ import { useSetOrderMutation } from "../../api/orderApi";
 import toast from "react-hot-toast";
 import "./checkout.css";
 import { useDeleteUserCartMutation } from "../../api/cartApi";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 export default function CheckOut() {
   const [shipping, setShipping] = useState("Standard");
@@ -15,12 +15,16 @@ export default function CheckOut() {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
-  const [price, setPrice] = useState(null)
   const [loading, setLoading] = useState(false);
 
   const [setOrder, { isError }] = useSetOrderMutation();
   const [deleteUserCart] = useDeleteUserCartMutation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  // السعر بعد الخصم القادم من Cart (convert to number)
+  const finleTotale = Number(searchParams.get('total')) || null;
 
   useEffect(() => {
     const setIdUser = async () => {
@@ -31,12 +35,17 @@ export default function CheckOut() {
   }, []);
 
   const { cartItems } = useCart(userID);
-  let subtotal = cartItems.reduce((sum, item) => sum + item.products.price * item.quantity, 0);
-  const shippingCost = shipping === "Express" ? 14.99 : 4.99;
-  const discount = subtotal * 0.2;
-  const total = subtotal + shippingCost - discount;
 
-  useEffect(() => setPrice(total), [total]);
+  let subtotal = cartItems.reduce(
+    (sum, item) => sum + item.products.price * item.quantity,
+    0
+  );
+
+  const shippingCost = shipping === "Express" ? 14.99 : 4.99;
+
+  const discount = subtotal * 0.2;
+  const finalPrice =
+    finleTotale !== null ? finleTotale + shippingCost : subtotal + shippingCost - discount;
 
   const handelSetOrder = async (e) => {
     e.preventDefault();
@@ -55,7 +64,7 @@ export default function CheckOut() {
 
     try {
       setLoading(true);
-      const orderItems = cartItems.map(item => ({
+      const orderItems = cartItems.map((item) => ({
         product_id: item.products.id,
         title: item.products.title,
         price: item.products.price,
@@ -69,13 +78,13 @@ export default function CheckOut() {
         phone,
         address,
         email,
-        price: price.toFixed(2),
+        price: finalPrice.toFixed(2),
         products: orderItems
       }).unwrap();
 
       isError ? toast.error('Order failed!') : toast.success('Order placed successfully!');
       await deleteUserCart(userID).unwrap();
-      navigate('/')
+      navigate('/');
     } catch (error) {
       console.log(error);
     } finally {
@@ -156,18 +165,22 @@ export default function CheckOut() {
           </div>
 
           <div className="checkout-summary-details">
-            <div className="flex justify-between"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
+            <div className="flex justify-between"><span>Subtotal</span>
+              <span>${finleTotale !== null ? finleTotale.toFixed(2) : subtotal.toFixed(2)}</span>
+            </div>
             <div className="flex justify-between"><span>Shipping cost</span><span>${shippingCost.toFixed(2)}</span></div>
-            <div className="flex justify-between"><span>Discount (20%)</span><span>-${discount.toFixed(2)}</span></div>
+            {finleTotale === null && (
+              <div className="flex justify-between"><span>Discount (20%)</span><span>-${discount.toFixed(2)}</span></div>
+            )}
           </div>
 
           <div className="checkout-total">
             <span>Order Total</span>
-            <span>${price?.toFixed(2)}</span>
+            <span>${finalPrice.toFixed(2)}</span>
           </div>
 
-          <button type="submit" className="checkout-button" onClick={handelSetOrder}>
-            Place Order
+          <button type="submit" className="checkout-button" onClick={handelSetOrder} disabled={loading}>
+            {loading ? "Placing Order..." : "Place Order"}
           </button>
         </div>
       </div>

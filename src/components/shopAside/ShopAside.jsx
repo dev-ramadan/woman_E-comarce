@@ -7,7 +7,11 @@ import { useCategoires } from '../../hooks/useCategories';
 const ShopAside = () => {
 
     const { categories, isError, isLoading } = useCategoires()
-    const { openShopAside, setSelectByCategory, setOpenShopAside } = useContext(OureContext);
+    const {
+        openShopAside,
+        setSelectByCategory,
+        setOpenShopAside ,
+    } = useContext(OureContext);
 
     if (isError) console.log(isError);
 
@@ -53,7 +57,7 @@ const ShopAside = () => {
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -50, opacity: 0 }}
                                 transition={{ duration: 0.4, ease: 'easeInOut' }}
-                                className="w-full h-fit bg-[#f2f2f2] absolute z-40"
+                                className="w-full h-fit bg-[#f2f2f2] absolute z-40 p-5"
                             >
                                 <h2 className="text-3xl mb-2">Categories</h2>
                                 <div className="shop_categories">
