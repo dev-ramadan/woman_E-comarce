@@ -4,5 +4,5 @@
 }
 
 .categories_link {
-    @apply px-2 py-4 text-lg block active:text-[#333333] cursor-pointer ml-2 mr-2 hover:bg-slate-300 hover:rounded-xl w-[50%] md:w-full
+    @apply px-2 py-4 text-lg block active:text-[#333333] active:bg-stone-300 cursor-pointer ml-2 mr-2 hover:bg-slate-300 hover:rounded-xl w-[50%] md:w-full
 }
