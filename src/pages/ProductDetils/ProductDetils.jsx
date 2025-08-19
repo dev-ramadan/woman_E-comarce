@@ -11,7 +11,7 @@ const ProductDetils = () => {
     const singleProduct = products.find((product) => product.id === Number(id));
     const [mainImage, setMainImage] = useState(null);
     const {checkUser} = useAddToCart();
-    const {setQuantityDialog , setCurrentProductId} = useContext (OureContext)
+    const { setCurrentProductId} = useContext (OureContext)
 
     useEffect(() => {
         if (singleProduct && singleProduct.images.length > 0) {
@@ -21,7 +21,6 @@ const ProductDetils = () => {
 
       const isLoginIn = ( id) => {
     checkUser()
-    setQuantityDialog(true)
     setCurrentProductId(id)
   }
 

@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import "./checkout.css";
 import { useDeleteUserCartMutation } from "../../api/cartApi";
 import { useLocation, useNavigate } from "react-router";
+import { FiLoader } from "react-icons/fi";
 
 export default function CheckOut() {
   const [shipping, setShipping] = useState("Standard");
@@ -180,7 +181,7 @@ export default function CheckOut() {
           </div>
 
           <button type="submit" className="checkout-button" onClick={handelSetOrder} disabled={loading}>
-            {loading ? "Placing Order..." : "Place Order"}
+            {loading ? <FiLoader className="animate-spin mx-auto" size={25} /> : "Place Order"}
           </button>
         </div>
       </div>
