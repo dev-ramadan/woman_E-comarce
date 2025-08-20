@@ -1,20 +1,22 @@
-import {  useGetOrderQuery, useUpdateOrderStatusMutation } from "../../../api/orderApi";
+import { useGetOrderQuery, useUpdateOrderStatusMutation, } from "../../../api/orderApi";
 import toast from "react-hot-toast";
 import "./dashpoard.css";
 
 
 const Orders = () => {
-  const { data: orders, error, isLoading, refetch } = useGetOrderQuery();
+  const { data: orders, error, isLoading } = useGetOrderQuery();
   const [updateOrderStatus] = useUpdateOrderStatusMutation();
 
   if (isLoading) return <p className="loading-text">Loading...</p>;
   if (error) return <p className="error-text">Error loading orders</p>;
 
-  const handleStatusChange = async (id, newStatus) => {
+  const handleStatusChange = async (id, status) => {
     try {
-      await updateOrderStatus({ id, status: newStatus }).unwrap();
-      toast.success(`Order #${id} updated to ${newStatus}`);
-      refetch();
+      await updateOrderStatus({
+        id,
+        status
+      }).unwrap();
+      toast.success(`Order #${id} updated to ${status}`);
     } catch (err) {
       console.error("Failed to update status:", err);
       toast.error("Failed to update status");

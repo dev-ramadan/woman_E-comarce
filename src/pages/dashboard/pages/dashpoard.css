@@ -11,7 +11,7 @@
   @apply text-xl md:text-2xl font-bold mb-4 text-center md:text-left;
 }
 
-/* ✅ عرض الجدول في الديسكتوب فقط */
+/*  عرض الجدول في الديسكتوب فقط */
 .orders-table-wrapper {
   @apply hidden md:block overflow-x-auto;
 }

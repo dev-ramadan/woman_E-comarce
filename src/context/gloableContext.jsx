@@ -26,6 +26,8 @@ export const OurePtovider = ({ children }) => {
     const [quantityDialog, setQuantityDialog] = useState(false);
     // تحكم في ارسال المتج ل modal quantity to select quantity
     const [currentProductId, setCurrentProductId] = useState(null);
+    // تحكم في modal add Categorey
+    const [addCategoreyForm , setAddCategoreyForm] = useState(false)
 
 
 
@@ -55,7 +57,9 @@ export const OurePtovider = ({ children }) => {
             selectQuantity,
             setSelectQuantity,
             currentProductId,
-            setCurrentProductId
+            setCurrentProductId,
+            addCategoreyForm,
+            setAddCategoreyForm
         }}>
             {children}
         </OureContext.Provider>

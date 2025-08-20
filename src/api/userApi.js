@@ -21,6 +21,7 @@ export const userApi = createApi({
         return { data: null }
     },
     endpoints: (builder) => ({
+
         signUp: builder.mutation({
             query: ({ email, password, displayName }) => ({
                 url: 'signup',

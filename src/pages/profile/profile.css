@@ -1,0 +1,57 @@
+
+  .profile-wrapper {
+    @apply max-w-5xl mx-auto mt-10 p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg;
+  }
+
+  .tabs {
+    @apply flex border-b border-gray-200 dark:border-gray-700 mb-6;
+  }
+
+  .tab-btn {
+    @apply py-3 px-6 text-gray-600 dark:text-gray-300 font-semibold hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition;
+  }
+
+  .tab-btn.active {
+    @apply border-b-4 border-blue-600 text-blue-600 dark:text-blue-400;
+  }
+
+  .tab-content {
+    @apply mt-4;
+  }
+
+  /* Profile Section */
+  .profile-header {
+    @apply flex flex-col items-center text-center;
+  }
+
+  .profile-avatar {
+    @apply w-32 h-32 rounded-full border-4 border-blue-500 mb-4;
+  }
+
+  .profile-name {
+    @apply text-2xl font-bold text-gray-800 dark:text-gray-100;
+  }
+
+  .profile-email {
+    @apply text-gray-500 dark:text-gray-400;
+  }
+
+  .profile-info {
+    @apply mt-6 space-y-4 w-full;
+  }
+
+  .info-item {
+    @apply flex justify-between border-b border-gray-200 dark:border-gray-700 pb-3;
+  }
+
+  .info-label {
+    @apply text-gray-600 dark:text-gray-300 font-semibold;
+  }
+
+  .info-value {
+    @apply text-gray-800 dark:text-gray-200;
+  }
+
+  .edit-btn {
+    @apply mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition w-full;
+  }
