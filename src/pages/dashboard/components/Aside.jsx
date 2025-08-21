@@ -53,14 +53,6 @@ const Sidebar = () => {
           >
             <FaShoppingCart /> Orders
           </NavLink>
-          <NavLink
-            to="/dashboard/users"
-            className={({ isActive }) =>
-              `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
-            }
-          >
-            <FaUsers /> Users
-          </NavLink>
         </nav>
       </div>
 

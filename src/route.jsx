@@ -10,7 +10,6 @@ import Login from "./pages/account/login/login";
 import Cart from "./pages/Cart/Cart";
 import DashboardLayout from "./pages/dashboard/dashbordLayout/DashbordLayout";
 import DashbordProducts from "./pages/dashboard/pages/products";
-import Users from "./pages/dashboard/pages/user";
 import Orders from "./pages/dashboard/pages/order";
 import Categories from "./pages/dashboard/pages/categories";
 import CheckOut from "./pages/chackOut/CheckOut";
@@ -33,7 +32,6 @@ const route = createBrowserRouter(createRoutesFromElements(
 
             <Route path="/dashboard" element={<DashboardLayout/>}>
             <Route index element={<DashbordProducts/>}/>
-            <Route path="users" element={<Users/>}/>
             <Route path="orders" element={<Orders/>}/>
             <Route path="categories" element={<Categories/>}/>
             </Route>

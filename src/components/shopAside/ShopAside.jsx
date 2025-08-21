@@ -19,7 +19,7 @@ const ShopAside = () => {
         <>
             {
                 isLoading ? (
-                    <div>isLoading............</div>
+                    <div>.</div>
                 ) : (
 
                     <AnimatePresence>

@@ -16,7 +16,7 @@ const {products , error , isLoading} = useProducts()
     
   return (
     <>
-      {isLoading ? 'loading........' :
+      {isLoading ? <div className="fixed inset-0 h-screen bg-white flex justify-center items-center"><img src="images/loading.png" className="md:w-36" alt="loading" /></div> :
         <div className="container mx-auto relative h-auto mb-16">
           <ShopHeader />
           <div className="flex  justify-between">
