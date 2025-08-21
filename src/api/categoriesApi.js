@@ -12,7 +12,11 @@ export const categoriesApi = createApi({
             const { data: { session } } = await supabase.auth.getSession();
             const token = session?.access_token
             headers.set('apikey', SUPABASE_ANON_KEY);
-            headers.set('Authorization', `Bearer ${token}`);
+            if (token) {
+                headers.set('Authorization', `Bearer ${token}`);
+            } else {
+                headers.set('Authorization', `Bearer ${SUPABASE_ANON_KEY}`);
+            }
             headers.set('Content-Type', 'application/json');
             return headers
         },
