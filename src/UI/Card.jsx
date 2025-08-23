@@ -29,6 +29,7 @@ const Card = ({ title, price, image, id }) => {
             src={image}
             alt={title}
             className="card-image"
+            loading="lazy"
           />
         </div>
       </Link>
