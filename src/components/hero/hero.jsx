@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import "./hero.css"; 
+import { Link } from "react-router";
 
 const HeroSlider = () => {
   const NextArrow = ({ onClick }) => (
@@ -81,7 +82,9 @@ const HeroSlider = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
+                <Link to={'/shop'}>
                 {slide.button}
+                </Link>
               </motion.button>
             </motion.div>
           </div>

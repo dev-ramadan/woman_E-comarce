@@ -26,8 +26,16 @@ export const profileApi = createApi({
         getUserProfile: builder.query({
             query: (userId) => `profiles?id=eq.${userId}`,
         }),
+        updateProfile : builder.mutation({
+            query : ({ id , data }) => ({
+                url : `profiles?id=eq.${id}`,
+                method : "PATCH",
+                body : data
+            }),
+            invalidatesTags : ['Profile']
+        })
 
     })
 })
 
-export const { useGetUsersQuery , useGetUserProfileQuery } = profileApi
+export const { useGetUsersQuery , useGetUserProfileQuery , useUpdateProfileMutation } = profileApi
