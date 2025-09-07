@@ -54,7 +54,6 @@ const Sidebar = () => {
           >
             <FaShoppingCart /> Orders
           </NavLink>
-
           <NavLink
             to="/dashboard/promocode"
             className={({ isActive }) =>
