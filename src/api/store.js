@@ -6,6 +6,7 @@ import { userApi } from "./userApi";
 import  authSlice  from "../Redux/authSlice";
 import { orderApi } from "./orderApi";
 import { profileApi } from "./profileApi";
+import { promoCodeApi } from "./promoCodeApi";
 
 export const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
         [cartApi.reducerPath]: cartApi.reducer,
         [userApi.reducerPath] : userApi.reducer,
         [orderApi.reducerPath] : orderApi.reducer,
-        [profileApi.reducerPath] : profileApi.reducer
+        [profileApi.reducerPath] : profileApi.reducer,
+        [promoCodeApi.reducerPath] : promoCodeApi.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
@@ -25,4 +27,5 @@ export const store = configureStore({
             .concat(userApi.middleware)
             .concat(orderApi.middleware)
             .concat(profileApi.middleware)
+            .concat(promoCodeApi.middleware)
 })

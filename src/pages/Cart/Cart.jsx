@@ -6,13 +6,17 @@ import { IoMdClose } from 'react-icons/io';
 import { useDeleteItemMutation, useUpdateCartMutation } from '../../api/cartApi';
 import { Link } from 'react-router';
 import toast from 'react-hot-toast';
+import { usePromoCode } from '../../hooks/usePromoCode';
 const Cart = () => {
     const [userID, setUserID] = useState('');
-    const [promoCode, setPromoCode] = useState(null);
-    const [totaleAfterPromo, setTotaleAfterPromo] = useState(null)
+    const [totaleAfterPromo, setTotaleAfterPromo] = useState('')
+    const [txt, setTxt] = useState('')
     const { cartItems } = useCart(userID);
     const [deleteItem] = useDeleteItemMutation();
-    const [updateCart] = useUpdateCartMutation()
+    const [updateCart] = useUpdateCartMutation();
+    const { promoCode } = usePromoCode();
+
+
     useEffect(() => {
         const fetchUser = async () => {
             const { data } = await supabase.auth.getUser();
@@ -20,19 +24,25 @@ const Cart = () => {
             setUserID(user.id)
         }
         fetchUser()
-    }, [])
+    }, []);
+
     let totle = cartItems.reduce((sum, item) => {
         return sum + item.products.price * item.quantity
 
-    }, 0)
+    }, 0);
+
+
 
     const chackPromoCode = () => {
-        if (promoCode === 'dragon') {
-            setTotaleAfterPromo(totle > 50 ? totle - 15 : totle - 5);
-            toast.success('Discound Success')
+        const matchedPromo = promoCode.find(item => txt === item.promocode);
+        if (matchedPromo) {
+            setTotaleAfterPromo(totle - matchedPromo.discount);
+            toast.success('Discount applied!');
+        } else {
+            toast.error('Invalid promo code');
         }
-        return
-    }
+    };
+
     return (
         <>
             <main className="cart_page">
@@ -81,7 +91,7 @@ const Cart = () => {
                                     Do you have a Promotional Code?
                                 </h2>
                                 <div className="apply_code">
-                                    <input type="text" id="code" placeholder="Promo code" value={promoCode || ''} onChange={(e) => setPromoCode(e.target.value)} />
+                                    <input type="text" id="code" placeholder="Promo code" value={txt} onChange={(e) => setTxt(e.target.value)} />
                                     <button onClick={chackPromoCode}>Done</button>
                                 </div>
                             </div>
@@ -94,11 +104,14 @@ const Cart = () => {
                                     </div>
                                     <div>
                                         <h4>Total Order</h4>
-                                        <span id="total_order " className={`${promoCode ? 'line-through' : ''}`}>${totle}</span>
-                                        {promoCode ? <span id="total_order ">${totaleAfterPromo}</span> : ''}
+                                        <span className={`${totaleAfterPromo ? 'line-through' : ''}`}>${totle}</span>
+                                        {totaleAfterPromo && (
+                                            <span className="text-green-600 font-bold ml-2">${totaleAfterPromo}</span>
+                                        )}
                                     </div>
+
                                 </div>
-                                <Link to={`/checkout?total=${totaleAfterPromo}`} >
+                                <Link to={`/checkout?total=${totaleAfterPromo || totle}`}>
                                     <button className="checkout">Check Out</button>
                                 </Link>
                             </div>
