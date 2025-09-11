@@ -7,6 +7,7 @@ import  authSlice  from "../Redux/authSlice";
 import { orderApi } from "./orderApi";
 import { profileApi } from "./profileApi";
 import { promoCodeApi } from "./promoCodeApi";
+import { sectionApi } from "./sectionApi";
 
 export const store = configureStore({
     reducer: {
@@ -17,7 +18,8 @@ export const store = configureStore({
         [userApi.reducerPath] : userApi.reducer,
         [orderApi.reducerPath] : orderApi.reducer,
         [profileApi.reducerPath] : profileApi.reducer,
-        [promoCodeApi.reducerPath] : promoCodeApi.reducer
+        [promoCodeApi.reducerPath] : promoCodeApi.reducer,
+        [sectionApi.reducerPath] : sectionApi.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
@@ -28,4 +30,5 @@ export const store = configureStore({
             .concat(orderApi.middleware)
             .concat(profileApi.middleware)
             .concat(promoCodeApi.middleware)
+            .concat(sectionApi.middleware)
 })

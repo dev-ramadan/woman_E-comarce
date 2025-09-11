@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router";
 import { OureContext } from "../../../context/gloableContext";
-import { FaBox, FaTags, FaShoppingCart, FaUsers, FaBars, FaTimes } from "react-icons/fa";
+import { FaBox, FaTags, FaShoppingCart, FaUsers, FaBars, FaTimes, FaUsersCog } from "react-icons/fa";
 import '../pages/dashpoard.css';
 import { FcSalesPerformance } from "react-icons/fc";
 
@@ -54,6 +54,16 @@ const Sidebar = () => {
           >
             <FaShoppingCart /> Orders
           </NavLink>
+
+   <NavLink
+            to="/dashboard/users"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
+            }
+          >
+            <FaUsers /> Users
+          </NavLink>
+
           <NavLink
             to="/dashboard/promocode"
             className={({ isActive }) =>

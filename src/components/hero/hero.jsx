@@ -3,8 +3,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
-import "./hero.css"; 
+import "./hero.css";
 import { Link } from "react-router";
+import { useGetSectionByTypeQuery } from "../../api/sectionApi";
 
 const HeroSlider = () => {
   const NextArrow = ({ onClick }) => (
@@ -37,36 +38,17 @@ const HeroSlider = () => {
     ),
     customPaging: () => <div className="dot"></div>,
   };
+  const { data: slides, isLoading } = useGetSectionByTypeQuery("hero")
 
-  const slides = [
-    {
-      img: "images/hero/hero001.webp",
-      title: "Get up to 30%",
-      subtitle: "Off New Arrivals",
-      button: "Shop Now",
-    },
-    {
-      img: "images/hero/hero002.webp",
-      title: "Summer Collection",
-      subtitle: "Hot & Trendy",
-      button: "Shop Now",
-    },
-    {
-      img: "images/hero/hero003.webp",
-      title: "Exclusive Deals",
-      subtitle: "Grab Yours Today",
-      button: "Shop Now",
-    },
-  ];
-
+  isLoading ? <p>LOADING..</p> : ''
   return (
     <div className="hero-slider">
       <Slider {...settings}>
-        {slides.map((slide, index) => (
+        {slides?.map((slide, index) => (
           <div key={index} className="slide">
             <div
               className="slide-bg"
-              style={{ backgroundImage: `url(${slide.img})` }}
+              style={{ backgroundImage: `url(${slide.image_url})` }}
             ></div>
 
             <motion.div
@@ -83,7 +65,7 @@ const HeroSlider = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link to={'/shop'}>
-                {slide.button}
+                  {slide.button_text}
                 </Link>
               </motion.button>
             </motion.div>

@@ -89,10 +89,10 @@ const CartDrawer = () => {
                         {cartItems.length >= 1 ? (
                             <div className="btn_control">
                                 <Link to={'/cart'}>
-                                    <button className="viewCart">View Cart</button>
+                                    <button className="viewCart" onClick={()=>setOpenCartDrawer(false)}>View Cart</button>
                                 </Link>
                                 <Link to={'/checkout'}>
-                                    <button className="checkout">Check Out</button>
+                                    <button className="checkout" onClick={()=>setOpenCartDrawer(false)}>Check Out</button>
                                 </Link>
                             </div>
                         ) : <div className="cart_empty">Cart is Empaty</div>}

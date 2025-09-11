@@ -10,8 +10,12 @@ export const profileApi = createApi({
             headers.set('apikey', SUPABASE_ANON_KEY);
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
+                
+
             } else {
                 headers.set('Authorization', `Bearer ${SUPABASE_ANON_KEY}`);
+                
+                
             }
             headers.set('Content-Type', 'application/json');
             return headers;
@@ -20,7 +24,7 @@ export const profileApi = createApi({
     tagTypes: ['Profile'],
     endpoints: (builder) => ({
         getUsers: builder.query({
-            query: () => 'profiles?select=id,display_name,email,created_at',
+            query: () => 'profiles?select=id,display_name,role,email,created_at',
             providesTags: ['Profile']
         }),
         getUserProfile: builder.query({
@@ -33,9 +37,16 @@ export const profileApi = createApi({
                 body : data
             }),
             invalidatesTags : ['Profile']
+        }),
+        deleteAccount : builder.mutation({
+            query : (id) => ({
+                url : `profiles?id=eq.${id}`,
+                method : "DELETE",
+            }),
+            invalidatesTags : ["Profile"]
         })
 
     })
 })
 
-export const { useGetUsersQuery , useGetUserProfileQuery , useUpdateProfileMutation } = profileApi
+export const { useGetUsersQuery , useGetUserProfileQuery , useUpdateProfileMutation , useDeleteAccountMutation } = profileApi

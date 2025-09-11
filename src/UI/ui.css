@@ -288,8 +288,11 @@
 }
 
 .card-cart-icon {
-  @apply absolute top-1 right-3 bg-white p-2 flex justify-center items-center rounded-full z-30 
-         hover:bg-black hover:text-white transition-all duration-300 cursor-pointer;
+  @apply absolute top-1 right-3  p-2 flex justify-between gap-8 items-center rounded-full z-30 
+        ;
+}
+.shop{
+  @apply  hover:bg-black hover:text-white transition-all duration-300 cursor-pointer bg-white w-auto h-auto p-2 rounded-full
 }
 
 .card-image-wrapper {

@@ -15,6 +15,7 @@ import Categories from "./pages/dashboard/pages/categories";
 import CheckOut from "./pages/chackOut/CheckOut";
 import ProfilePage from "./pages/profile/Proflie";
 import PromoCode from "./pages/dashboard/pages/PromoCode";
+import Users from "./pages/dashboard/pages/Users";
 
 const route = createBrowserRouter(createRoutesFromElements(
     <>
@@ -35,6 +36,7 @@ const route = createBrowserRouter(createRoutesFromElements(
             <Route index element={<DashbordProducts/>}/>
             <Route path="orders" element={<Orders/>}/>
             <Route path="categories" element={<Categories/>}/>
+            <Route path="users" element={<Users/>}/>
             <Route path="promocode" element={<PromoCode/>}/>
             </Route>
     </>

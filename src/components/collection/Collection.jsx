@@ -1,43 +1,24 @@
 import { FaArrowRight } from "react-icons/fa";
 import "./Collection.css";
+import { useGetSectionByTypeQuery } from "../../api/sectionApi";
 
 const Collection = () => {
-  const images = [
-    {
-      image: "images/banner/banner1.webp",
-      title: "Summer Collection",
-      descripation: "Summer Collection",
-      cta: "Discover Now",
-    },
-    {
-      image: "images/banner/banner2.webp",
-      title: "What’s New?",
-      descripation: "Get the glow",
-      cta: "Discover Now",
-    },
-    {
-      image: "images/banner/banner3.webp",
-      title: "Buy 1 Get 1",
-      descripation: "Starting at $7.99",
-      cta: "Shop Now",
-    },
-  ];
-
+  const {data : collections} = useGetSectionByTypeQuery("collection");
   return (
     <div className="collection-container">
-      {images.map((img, index) => (
-        <div key={index} className="collection-item group">
+      {collections?.map((collection) => (
+        <div key={collection.id} className="collection-item group">
           <div className="shine-effect "></div>
 
           <div className="collection-text ">
-            <h1>{img.title}</h1>
-            <p>{img.descripation}</p>
+            <h1>{collection.title}</h1>
+            <p>{collection.subtitle}</p>
           </div>
 
-          <img src={img.image} alt={`banner-${index}`} className="collection-image" />
+          <img src={collection.image_url} alt={`banner-${collection.id}`} className="collection-image" loading="lazy"/>
 
           <div className="cta">
-            <span>{img.cta}</span>
+            <span>{collection.button_text}</span>
             <FaArrowRight />
           </div>
         </div>

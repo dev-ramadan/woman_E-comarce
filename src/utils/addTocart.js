@@ -22,6 +22,7 @@ export const useAddToCart = () => {
 
   }, [user]);
 
+
   const checkUser = () => {
     if (!userID) {
       toast.error('Please log in first');

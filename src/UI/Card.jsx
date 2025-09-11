@@ -1,28 +1,58 @@
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router";
 import "./ui.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { OureContext } from "../context/gloableContext";
 import { useAddToCart } from "../utils/addTocart";
+import { useSelector } from "react-redux";
 
 const Card = ({ title, price, image, id }) => {
-  const {setQuantityDialog,setCurrentProductId} = useContext(OureContext);
-  const {checkUser} = useAddToCart() ;
+  const { selectQuantity, setSelectQuantity, setCurrentProductId } = useContext(OureContext);
+  const { user } = useSelector(state => state.auth)
+  const [add, setAdd] = useState(false)
+  const { checkUser, handelAdd } = useAddToCart();
 
-  const isLoginIn = ( id) => {
-    checkUser()
-    setCurrentProductId(id)
+  const fristClick = () => {
+    if (!user) {
+      checkUser();
+       return;
+    } 
+    if(!add){
+      setAdd(true)
+    }
+  }
+  const scoundClick = () => {
+    setAdd(false)
+    handelAdd(id)
+  }
+
+  const addToCart = () => {
+    if (add && user) {
+      scoundClick();
+      return;
+    }
+    fristClick()
   }
 
   return (
-    <div className="card">
-      
+    <div className="card shadow-xl p-2 rounded-lg">
+
       <div
         className="card-cart-icon"
-        onClick={()=>isLoginIn(id)}
+        onClick={addToCart}
+
+      // onClick={() => isLoginIn(id)}
       >
-        <MdOutlineShoppingCart size={20} />
+        <MdOutlineShoppingCart size={20} className="shop" />
+        <div className={`w-20 ${add ? 'flex' : 'hidden'}   items-center justify-center relative px-5 rounded-md shadow-lg bg-white h-fit`}>
+          <button className="absolute right-1" onClick={(e) => { e.stopPropagation(); setSelectQuantity(prev => prev + 1) }}>+</button>
+          <input type="text" value={selectQuantity} onChange={(e) => setSelectQuantity(Number(e.target.value))} className="text-center w-full border-none outline-none" />
+          <button className="absolute left-1" onClick={(e) => { e.stopPropagation(); setSelectQuantity(prev => Math.max(prev - 1, 1)) }}>-</button>
+        </div>
+
       </div>
+
+
       <Link to={`/product/${id}`}>
         <div className="card-image-wrapper">
           <img
