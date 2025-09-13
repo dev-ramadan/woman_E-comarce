@@ -31,21 +31,34 @@ const HeroSlider = () => {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    appendDots: dots => (
+    appendDots: (dots) => (
       <div>
         <ul className="dots">{dots}</ul>
       </div>
     ),
     customPaging: () => <div className="dot"></div>,
   };
-  const { data: slides, isLoading } = useGetSectionByTypeQuery("hero")
 
-  isLoading ? <p>LOADING..</p> : ''
+  const { data: slides, isLoading } = useGetSectionByTypeQuery("hero");
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 h-screen bg-white flex justify-center items-center z-50">
+        <img
+          src="images/loading.png"
+          className="md:w-28"
+          alt="loading"
+          loading="lazy"
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="hero-slider">
       <Slider {...settings}>
-        {slides?.map((slide, index) => (
-          <div key={index} className="slide">
+        {slides?.map((slide) => (
+          <div key={slide.id} className="slide">
             <div
               className="slide-bg"
               style={{ backgroundImage: `url(${slide.image_url})` }}
@@ -59,15 +72,15 @@ const HeroSlider = () => {
             >
               <h1 className="title">{slide.title}</h1>
               <h2 className="subtitle">{slide.subtitle}</h2>
-              <motion.button
-                className="btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link to={'/shop'}>
-                  {slide.button_text}
-                </Link>
-              </motion.button>
+              {slide.button_text && (
+                <motion.button
+                  className="btn"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link to={"/shop"}>{slide.button_text}</Link>
+                </motion.button>
+              )}
             </motion.div>
           </div>
         ))}

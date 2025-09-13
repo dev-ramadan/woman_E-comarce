@@ -10,8 +10,8 @@ const ProductDetils = () => {
     const { products } = useProducts();
     const singleProduct = products.find((product) => product.id === Number(id));
     const [mainImage, setMainImage] = useState(null);
-    const {checkUser} = useAddToCart();
-    const { setCurrentProductId} = useContext (OureContext)
+    const { checkUser } = useAddToCart();
+    const { setCurrentProductId } = useContext(OureContext)
 
     useEffect(() => {
         if (singleProduct && singleProduct.images.length > 0) {
@@ -19,10 +19,10 @@ const ProductDetils = () => {
         }
     }, [singleProduct]);
 
-      const isLoginIn = ( id) => {
-    checkUser()
-    setCurrentProductId(id)
-  }
+    const isLoginIn = (id) => {
+        checkUser()
+        setCurrentProductId(id)
+    }
 
     return (
         <main>
@@ -40,16 +40,17 @@ const ProductDetils = () => {
                             />
 
                             {/* الصور المصغرة */}
-                         
+
                             <div className="w-auto mx-auto h-20 thumbnails flex gap-3 items-start">
                                 {singleProduct.images.map((img, index) => (
                                     <div key={index} className="w-16 h-16">
                                         <img
                                             src={img}
+                                            loading="lazy"
                                             alt={`thumbnail-${index}`}
                                             className={`w-full h-full object-cover rounded-lg border cursor-pointer transition ${mainImage === img
-                                                    ? "border-blue-500 ring-2 ring-blue-400"
-                                                    : "border-gray-300"
+                                                ? "border-blue-500 ring-2 ring-blue-400"
+                                                : "border-gray-300"
                                                 }`}
                                             onClick={() => setMainImage(img)}
                                         />
@@ -76,13 +77,13 @@ const ProductDetils = () => {
 
                             {/* الأزرار */}
                             <div className="buttons flex flex-col md:flex-row gap-4 mt-6">
-                        
+
 
                                 {/* زر الإضافة للسلة */}
                                 <button
                                     id="btn_add"
                                     className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
-                                    onClick={()=>isLoginIn(singleProduct.id)}
+                                    onClick={() => isLoginIn(singleProduct.id)}
                                 >
                                     Add To Cart
                                 </button>

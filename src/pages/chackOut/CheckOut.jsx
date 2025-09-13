@@ -157,7 +157,8 @@ export default function CheckOut() {
             {cartItems.map((p) => (
               <div key={p.id} className="checkout-product-item">
                 <div className="checkout-product-info">
-                  <img src={p.products.images[0]} alt={p.products.title} className="checkout-product-img" />
+                  <img src={p.products.images[0]} alt={p.products.title} className="checkout-product-img" loading="lazy"
+                  />
                   <div><p>{p.products.title}</p></div>
                 </div>
                 <p>${(p.products.price * p.quantity).toFixed(2)}</p>

@@ -10,7 +10,7 @@ const ShopAside = () => {
     const {
         openShopAside,
         setSelectByCategory,
-        setOpenShopAside ,
+        setOpenShopAside,
     } = useContext(OureContext);
 
     if (isError) console.log(isError);

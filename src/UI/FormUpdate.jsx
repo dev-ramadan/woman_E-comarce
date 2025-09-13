@@ -99,7 +99,7 @@ const FormUpdate = ({ product }) => {
                                 className="file-input"
                             />
                             {file && typeof file === "string" && (
-                                <img src={file} alt="Preview" className="preview-img" />
+                                <img src={file} alt="Preview" className="preview-img" loading="lazy" />
                             )}
                             <button
                                 type="submit"

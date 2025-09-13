@@ -58,7 +58,8 @@ const Cart = () => {
                                     cartItems.map(item => (
                                         <div key={item.id} className="cart_product">
                                             <div className="cart_product_img">
-                                                <img src={item.products.images[0]} />
+                                                <img src={item.products.images[0]} loading="lazy"
+                                                />
                                             </div>
                                             <div className="cart_product_info">
                                                 <div className="top_card">

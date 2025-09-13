@@ -19,37 +19,26 @@ export const sectionApi = createApi({
     }),
     tagTypes: ["Section"],
     endpoints: (builder) => ({
-        // READE
+        // READE ALL
+        getAllSection: builder.query({
+            query: () => `sections`,
+            providesTags: ["Section"]
+        }),
+        // READE BY ID
         getSectionByType: builder.query({
             query: (type) => `sections?type=eq.${type}`,
             providesTags: ["Section"]
         }),
-          updateSection: builder.mutation({
-    query: ({ id, data }) => ({
-      url: `sections?id=eq.${id}`,
-      method: "PATCH",
-      body: data,
-    }),
-    invalidatesTags: ["Section"], 
-  }),
-        // // CREATE
-        // createPromoCode : builder.mutation({
-        //     query:({promocode , discount})=>({
-        //         url : 'sale',
-        //         method : 'POST',
-        //         body : {promocode , discount}
-        //     }),
-        //     invalidatesTags : ['PromoCode']
-        // }),
-        // // DELETE
-        // deletePromoCode : builder.mutation({
-        //     query:(id) =>({
-        //         url : `sale?id=eq.${id}`,
-        //         method : "DELETE"
-        //     }),
-        //     invalidatesTags : ["PromoCode"]
-        // }),
+        updateSection: builder.mutation({
+            query: ({ id, data }) => ({
+                url: `sections?id=eq.${id}`,
+                method: "PATCH",
+                body: data,
+            }),
+            invalidatesTags: ["Section"],
+        }),
+
     })
 });
 
-export const {useGetSectionByTypeQuery} = sectionApi
+export const { useGetSectionByTypeQuery, useUpdateSectionMutation , useGetAllSectionQuery } = sectionApi

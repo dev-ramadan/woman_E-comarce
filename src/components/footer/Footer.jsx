@@ -10,6 +10,7 @@ const Footer = () => {
             src="logo.jpg"
             alt="Logo"
             className="footer-logo"
+            loading="lazy"
           />
           <p className="footer-text">
             The customer is at the heart of our unique business model, which includes design.

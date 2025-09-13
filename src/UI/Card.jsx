@@ -5,9 +5,10 @@ import { useContext, useState } from "react";
 import { OureContext } from "../context/gloableContext";
 import { useAddToCart } from "../utils/addTocart";
 import { useSelector } from "react-redux";
+import { BiEdit } from "react-icons/bi";
 
 const Card = ({ title, price, image, id }) => {
-  const { selectQuantity, setSelectQuantity, setCurrentProductId } = useContext(OureContext);
+  const { selectQuantity, setSelectQuantity } = useContext(OureContext);
   const { user } = useSelector(state => state.auth)
   const [add, setAdd] = useState(false)
   const { checkUser, handelAdd } = useAddToCart();

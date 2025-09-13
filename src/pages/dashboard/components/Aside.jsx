@@ -4,6 +4,7 @@ import { OureContext } from "../../../context/gloableContext";
 import { FaBox, FaTags, FaShoppingCart, FaUsers, FaBars, FaTimes, FaUsersCog } from "react-icons/fa";
 import '../pages/dashpoard.css';
 import { FcSalesPerformance } from "react-icons/fc";
+import { RxSection } from "react-icons/rx";
 
 const Sidebar = () => {
   const { asideAdmin, setAsideAdmin } = useContext(OureContext);
@@ -71,6 +72,15 @@ const Sidebar = () => {
             }
           >
             <FcSalesPerformance />  PromoCode
+          </NavLink>
+
+                    <NavLink
+            to="/dashboard/section"
+            className={({ isActive }) =>
+              `sidebar-link ${isActive ? "sidebar-link-active" : ""}`
+            }
+          >
+            <RxSection />  Section
           </NavLink>
         </nav>
       </div>
